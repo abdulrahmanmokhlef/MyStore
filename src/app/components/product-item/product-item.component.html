@@ -1,0 +1,14 @@
+
+
+
+<div class="product-container">
+    <a class="pointer" (click)="viewProductDetails()" >
+        <img [src]="product.url" class="product-image" alt ="product">
+    </a>
+    
+    <label>{{product.name}}</label>
+    <label>${{product.price}}</label>
+
+    <app-add-to-cart [product] ="product"></app-add-to-cart>
+    
+</div>

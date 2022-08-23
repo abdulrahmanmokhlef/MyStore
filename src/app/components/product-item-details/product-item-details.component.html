@@ -1,0 +1,19 @@
+<div class="row detail-container" >
+    <div class="col p-3 detail-item">
+        <img [src]="product.url">
+    </div>
+    <div class="col p-3 detail-item">
+        <div >
+            <p><b>{{product.name}}</b></p>
+            <p>${{product.price}}</p>
+            <p>Carry things around town!</p>
+        </div>
+
+        <app-add-to-cart [product]="product"></app-add-to-cart>
+
+        <a [routerLink]="['/product-list']" class="back-link">
+            Back to product list
+        </a>
+    </div>
+</div>
+

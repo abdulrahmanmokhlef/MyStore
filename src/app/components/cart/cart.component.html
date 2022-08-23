@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col p-5">
+        <app-cart-item [item]="item" *ngFor="let item of cartItems"></app-cart-item>
+    </div>
+    <div class="col p-5" >
+        <form #f="ngForm" (ngSubmit)="onSubmit()">
+    
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Full name</label>
+                <input type="text" class="form-control"  placeholder="(minimum 3 characters)" minlength="3" required [(ngModel)]="shippingDetails.fullName" name="fullName" #fullName="ngModel">
+            </div>
+        
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label" >Address</label>
+                <input type="text" class="form-control"  placeholder="(minimum 6 characters)" minlength="6" required [(ngModel)]="shippingDetails.address" name="address" #address="ngModel">
+            </div>
+        
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Credit card number</label>
+                <input type="email" class="form-control"  placeholder="(16-digit numbers)"  minlength="16" maxLength="16" required [(ngModel)]="shippingDetails.cardNum" name="cardNum" #cardNum="ngModel" numbersOnly>
+            </div>
+        
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+            </div>
+        
+        </form>
+    </div>
+</div>

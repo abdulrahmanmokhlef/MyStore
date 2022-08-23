@@ -1,0 +1,9 @@
+<form #f="ngForm" (ngSubmit)="addToCart()">
+    <div class="form-group">
+        <select class="form-select select-input" [(ngModel)]="quantity" name="quantity">
+            
+            <option *ngFor="let q of availableQuantity" [ngValue]="q"  >{{q}}</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Add to cart</button>
+    </div>
+</form>
