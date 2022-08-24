@@ -18,6 +18,9 @@ export class CartComponent implements OnInit {
     cardNum: null
   };
 
+  invalidName = false;
+  invalidAddress = false;
+
   constructor(private router: Router, private productService : ProductServiceService) { }
   
   ngOnInit(): void {
@@ -30,6 +33,24 @@ export class CartComponent implements OnInit {
       this.total += i.price * i.quantity;
     })
   }
+
+  validateName(event:any){
+    debugger
+    if(event.length < 3)
+      this.invalidName =true
+    else
+      this.invalidName = false  
+  }
+
+  validateAddress(event:any){
+    if(event.length < 6)
+      this.invalidAddress =true
+    else
+      this.invalidAddress = false  
+  }
+
+  
+  
 
   onSubmit(){
     debugger

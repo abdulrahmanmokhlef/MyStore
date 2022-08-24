@@ -7,19 +7,19 @@
     
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Full name</label>
-                <input type="text" class="form-control"  placeholder="(minimum 3 characters)" minlength="3" required [(ngModel)]="shippingDetails.fullName" name="fullName" #fullName="ngModel">
-                <span class="red" *ngIf="fullName.invalid && fullName.touched">Full name minimum length is 3 characters.</span>
+                <input type="text" class="form-control"  placeholder="(minimum 3 characters)" minlength="3" required [(ngModel)]="shippingDetails.fullName" name="fullName" #fullName="ngModel" (ngModelChange)="validateName($event)">
+                <span class="red" *ngIf="invalidName">Full name minimum length is 3 characters.</span>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label" >Address</label>
-                <input type="text" class="form-control"  placeholder="(minimum 6 characters)" minlength="6" required [(ngModel)]="shippingDetails.address" name="address" #address="ngModel">
-                <span class="red" *ngIf="address.invalid && address.touched">Address minimum length is 6 characters.</span>
+                <input type="text" class="form-control"  placeholder="(minimum 6 characters)" minlength="6" required [(ngModel)]="shippingDetails.address" name="address" #address="ngModel" (ngModelChange)="validateAddress($event)">
+                <span class="red" *ngIf="invalidAddress">Address minimum length is 6 characters.</span>
             </div>
         
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Credit card number</label>
                 <input type="email" class="form-control"  placeholder="(16-digit numbers)"  minlength="16" maxLength="16" required [(ngModel)]="shippingDetails.cardNum" name="cardNum" #cardNum="ngModel" numbersOnly>
-                <span class="red" *ngIf="cardNum.invalid && cardNum.touched">Card number must be 16-digits.</span>
+                <span class="red" *ngIf="cardNum.invalid && (cardNum.touched || cardNum.dirty)">Card number must be 16-digits.</span>
             </div>
         
             <div class="mb-3">
