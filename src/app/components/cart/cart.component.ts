@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
   total: number = 0;
-
+  
   shippingDetails: any={
     fullName: null,
     address: null,
@@ -26,9 +26,11 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     debugger
     this.cartItems = this.productService.getCartItems();
+    this.calculateTotal(this.cartItems);
   }
 
   calculateTotal(items: Product[]){
+    this.total = 0;
     items.forEach(i => {
       this.total += i.price * i.quantity;
     })
@@ -50,11 +52,30 @@ export class CartComponent implements OnInit {
   }
 
   
-  
+  changeItem(newItem: Product) {
+    debugger
+    // this.cartItems.map(i => {
+    //   if(i.id == newItem.id)
+    //     i.quantity = newItem.quantity
+    // })
+
+    this.productService.addItemToCart(newItem);
+    this.cartItems = this.productService.getCartItems();
+    this.calculateTotal(this.cartItems);
+
+  }
+
+  removeItemFromCart(id: number){
+    debugger
+    this.productService.removeItemFromCart(id);
+    this.cartItems = this.productService.getCartItems();
+    this.calculateTotal(this.cartItems);
+
+    alert('Item removed from card.')
+  }
 
   onSubmit(){
     debugger
-    this.calculateTotal(this.cartItems);
 
     this.productService.submitCart(this.total);
 

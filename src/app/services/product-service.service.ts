@@ -26,12 +26,29 @@ export class ProductServiceService {
     if(index == -1)
       cartItems.push(item);
     else
-      cartItems.map(i =>{ i.quantity = item.quantity})
+      cartItems.map(i =>{ 
+        if(i.id == item.id)
+          i.quantity = item.quantity
+      })
 
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
  
   }
-    
+  
+  removeItemFromCart(id:number){
+    let cartItems: Product[] = [];
+
+    let items = localStorage.getItem('cartItems'); 
+    if(items)
+      cartItems = JSON.parse(items);
+      
+    let index = cartItems.findIndex(i => i.id == id);
+    if(index > -1)
+      cartItems.splice(index, 1);
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }
+
   getCartItems(){
     let cartItems: Product[] = [];
 
@@ -52,7 +69,7 @@ export class ProductServiceService {
 
     if(total)
       return total; 
-
+    
     return;
   }
 

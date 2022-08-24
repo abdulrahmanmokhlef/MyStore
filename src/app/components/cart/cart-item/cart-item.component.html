@@ -4,7 +4,17 @@
     </div>
     <div class="col p-3">
         <p><b>{{item.name}}</b></p>
-        <p>${{item.price * item.quantity | number : '1.2-2'}}</p>
-        <p> Amount: {{item.quantity}}</p>
+        <p>${{item.price  | number : '1.2-2'}}</p>
+
+       <form #f="ngForm">
+        <div class="cart-item">
+            <label>Amount:</label>
+            <input type="text" numbersOnly  [(ngModel)]="item.quantity" name="quantity"  (ngModelChange)="changeQuantity($event)">
+        </div>
+            
+        <button type="button" class="btn btn-danger" (click)="removeItemFromCart(item.id)">Remove</button>
+        
+       </form>
+        
     </div>
 </div>

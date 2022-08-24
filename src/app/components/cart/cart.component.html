@@ -1,6 +1,9 @@
 <div class="row">
     <div class="col p-5">
-        <app-cart-item [item]="item" *ngFor="let item of cartItems"></app-cart-item>
+        <app-cart-item (removeItemEvent)="removeItemFromCart($event)" (newItemEvent)="changeItem($event)" [item]="item" *ngFor="let item of cartItems"></app-cart-item>
+        <div class="text-center">
+            <b>Total Amount:</b> {{total | number : '1.2-2'}}
+        </div>
     </div>
     <div class="col p-5" >
         <form #f="ngForm" (ngSubmit)="onSubmit()">
@@ -23,9 +26,11 @@
             </div>
         
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]="f.invalid || this.cartItems.length < 1">Submit</button>
             </div>
         
+            <span class="red" *ngIf="this.cartItems.length < 1">Cart is empty!</span>
+
         </form>
     </div>
 </div>
