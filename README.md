@@ -13,6 +13,15 @@ steps:
 4-Provide shippping details
 5-Complete your order
 
+# Application structure 
+
+-The application fetch the data from json file in assets
+-Fech data from productService in services
+-Use localstorage to persist data 
+-All components are located in components folder
+-Shared layout components are located in layout folder
+-The is a custom directive located in directives folder 
+
 
 ## Technology
 
